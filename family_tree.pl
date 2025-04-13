@@ -106,3 +106,12 @@ husband(X) :-
     dite(Child, X),
     dite(Child, Husband),
     write(Husband), nl.
+
+grand_da1(X, Y) :-  
+    woman(X),  
+    dite(X, Parent),  
+    dite(Parent, Y).  
+
+grand_da2(X, Y) :-  
+    daughter(X, Parent),  
+    dite(Parent, Y). 
