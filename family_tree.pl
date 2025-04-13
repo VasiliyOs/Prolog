@@ -50,3 +50,17 @@ mother(X) :-
     woman(M),
     dite(X, M),
     write(M), nl.
+
+brother(X, Y) :-
+    man(X),
+    father(F, X),
+    father(F, Y),
+    mother(M, X),
+    mother(M, Y),
+    X \= Y.
+
+brothers(X) :-
+    brother(Brother, X),
+    write(Brother), nl,
+    fail.
+brothers(_).
