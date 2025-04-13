@@ -126,3 +126,22 @@ grand_ma_and_da2(X, Y) :-
     woman(X),
     woman(Y),
     (grand_da1(X, Y); grand_da1(Y, X)).
+
+sister(X, Y) :-
+    woman(X),
+    father(F, X),
+    father(F, Y),
+    mother(M, X),
+    mother(M, Y),
+    X \= Y.
+
+niece(X, Y) :-
+    woman(X),
+    dite(X, Parent),
+    (brother(Parent, Y); sister(Parent, Y)).
+
+nieces(X) :-
+    niece(Niece, X),
+    write(Niece), nl,
+    fail.
+nieces(_).
