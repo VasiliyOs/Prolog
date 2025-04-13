@@ -92,3 +92,17 @@ daughter(X) :-
     write(Daughter), nl,
     fail.
 daughter(_).
+
+husband(X, Y) :-
+    man(X),
+    woman(Y),
+    dite(Child, X),
+    dite(Child, Y),
+    X \= Y.
+
+husband(X) :-
+    woman(X),
+    man(Husband),
+    dite(Child, X),
+    dite(Child, Husband),
+    write(Husband), nl.
