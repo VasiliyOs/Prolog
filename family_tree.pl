@@ -34,3 +34,10 @@ women :-
     write(X), nl,
     fail.
 women.
+
+children(X) :-
+    dite(Child, X),
+    write(Child),
+    nl,
+    fail.
+children(_).
