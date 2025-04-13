@@ -51,6 +51,10 @@ mother(X) :-
     dite(X, M),
     write(M), nl.
 
+father(F, X) :- 
+    man(F),
+    dite(X, F). 
+
 brother(X, Y) :-
     man(X),
     father(F, X),
@@ -64,3 +68,16 @@ brothers(X) :-
     write(Brother), nl,
     fail.
 brothers(_).
+
+b_s(X, Y) :-
+    father(F, X),
+    father(F, Y),
+    mother(M, X),
+    mother(M, Y),
+    X \= Y.
+
+b_s(X) :-
+    b_s(Bs, X),
+    write(Bs), nl,
+    fail.
+b_s(_).
