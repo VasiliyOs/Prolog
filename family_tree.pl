@@ -81,3 +81,14 @@ b_s(X) :-
     write(Bs), nl,
     fail.
 b_s(_).
+
+daughter(X, Y) :-
+    woman(X),
+    (father(Y, X); mother(Y, X)).
+
+daughter(X) :-
+    woman(Daughter),
+    (father(X, Daughter); mother(X, Daughter)),
+    write(Daughter), nl,
+    fail.
+daughter(_).
