@@ -123,3 +123,30 @@ has_exam(law,0).
 has_exam(technology,0).
 has_exam(ecology,0).
 has_exam(astronomy,0).
+
+
+q1(X1) :-
+    write('Is it hard?'), nl,
+    read(X1).
+
+q2(X2) :-
+    write('Is it has written lab?'), nl,
+    read(X2).
+
+q3(X3) :-
+    write('Is it has practic lab?'), nl,
+    read(X3).
+
+q4(X4) :-
+    write('Is it createve subject?'), nl,
+    read(X4).
+
+q5(X5) :-
+    write('Is it has exam?'), nl,
+    read(X5).
+
+pr :-
+    q1(X1), q2(X2), q3(X3), q4(X4), q5(X5),
+    subject(Subj),
+    difficult(Subj, X1), written_work(Subj, X2), lab_work(Subj, X3), creative(Subj, X4), has_exam(Subj, X5),
+    write(Subj).
