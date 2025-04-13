@@ -115,3 +115,14 @@ grand_da1(X, Y) :-
 grand_da2(X, Y) :-  
     daughter(X, Parent),  
     dite(Parent, Y). 
+
+grand_ma_and_da1(X, Y) :-
+    woman(X),
+    woman(Y),
+    (dite(X, Parent), dite(Parent, Y);
+    dite(Y, Parent),  dite(Parent, X)).
+
+grand_ma_and_da2(X, Y) :-
+    woman(X),
+    woman(Y),
+    (grand_da1(X, Y); grand_da1(Y, X)).
