@@ -22,3 +22,15 @@ dite(zoya, vlad).
 dite(zoya, vladina).
 dite(katrin, vlad).
 dite(katrin, vladina).
+
+men :-
+    man(X),
+    write(X), nl,
+    fail.
+men.
+
+women :-
+    woman(X),
+    write(X), nl,
+    fail.
+women.
