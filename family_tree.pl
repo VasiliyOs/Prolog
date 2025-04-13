@@ -41,3 +41,12 @@ children(X) :-
     nl,
     fail.
 children(_).
+
+mother(M, X) :- 
+    woman(M),
+    dite(X, M). 
+
+mother(X) :-
+    woman(M),
+    dite(X, M),
+    write(M), nl.
