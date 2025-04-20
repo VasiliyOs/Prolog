@@ -25,3 +25,26 @@ fact_up(N, Acc, X) :-
     N1 is N - 1,
     Acc1 is Acc * N,
     fact_up(N1, Acc1, X).
+
+
+sum_digits_down(0, 0).
+sum_digits_down(N, Sum) :- 
+    N > 0,
+    Digit is N mod 10,
+    N1 is N // 10,
+    sum_digits(N1, Sum1),
+    Sum is Sum1 + Digit.
+
+
+
+
+sum_digits_up(N, Sum) :- 
+    sum_digits_upr(N, Sum).
+
+sum_digits_up(0, 0).
+sum_digits_up(N, Sum) :- 
+    N > 0,
+    Digit is N mod 10,
+    N1 is N // 10,
+    sum_digits_up(N1, Sum1),
+    Sum is Sum1 + Digit.
