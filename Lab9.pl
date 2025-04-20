@@ -123,3 +123,14 @@ count_less_than_3_down(N, Count) :-
     count_less_than_3_down(NextN, RestCount),
     (Digit < 3 -> Count is RestCount + 1; Count is RestCount).
 
+
+count_less_than_3(N, Count) :-
+    count_less_than_3_up(N, 0, Count).
+
+count_less_than_3_up(0, Count, Count).
+count_less_than_3_up(N, Acc, Count) :-
+    N > 0,
+    Digit is N mod 10,
+    (Digit < 3 -> NewAcc is Acc + 1; NewAcc is Acc),
+    NextN is N // 10,
+    count_less_than_3_up(NextN, NewAcc, Count).
