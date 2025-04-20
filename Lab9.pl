@@ -190,3 +190,25 @@ main24 :-
     ;
         write('Список слишком короткий'), nl
     ).
+
+
+
+max_odd(List, MaxOdd) :-
+    include(odd, List, OddList),
+    (OddList = [] ->
+        MaxOdd = none
+    ;
+        max_list(OddList, MaxOdd)
+    ).
+
+odd(X) :-
+    1 is X mod 2.
+
+main36 :-
+    read_list(List),
+    max_odd(List, MaxOdd),
+    (MaxOdd \= none ->
+        write('Максимальный нечетный элемент: '), write(MaxOdd), nl
+    ;
+        write('Нет нечетных элементов'), nl
+    ).
