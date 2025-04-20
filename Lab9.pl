@@ -134,3 +134,42 @@ count_less_than_3_up(N, Acc, Count) :-
     (Digit < 3 -> NewAcc is Acc + 1; NewAcc is Acc),
     NextN is N // 10,
     count_less_than_3_up(NextN, NewAcc, Count).
+
+
+
+min_max_positions(List, MinPos, MaxPos) :-
+    min_list(List, Min),
+    max_list(List, Max),
+    nth0(MinPos, List, Min),
+    nth0(MaxPos, List, Max).
+
+reverse_between(List, MinPos, MaxPos, Result) :-
+    (MinPos < MaxPos ->
+        Start is MinPos + 1,
+        End is MaxPos - 1
+    ;
+        Start is MaxPos + 1,
+        End is MinPos - 1
+    ),
+    length(List, Length),
+    (Start >= 0, End < Length, Start =< End ->
+        split_list(List, Start, End, Prefix, Middle, Suffix),
+        reverse(Middle, ReversedMiddle),
+        append(Prefix, ReversedMiddle, Temp),
+        append(Temp, Suffix, Result)
+    ;
+        Result = List
+    ).
+
+split_list(List, Start, End, Prefix, Middle, Suffix) :-
+    length(Prefix, Start),
+    append(Prefix, Rest, List),
+    MiddleLength is End - Start + 1,
+    length(Middle, MiddleLength),
+    append(Middle, Suffix, Rest).
+
+main12 :-
+    read_list(List),
+    min_max_positions(List, MinPos, MaxPos),
+    reverse_between(List, MinPos, MaxPos, Result),
+    print_list(Result).
