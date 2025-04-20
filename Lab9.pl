@@ -78,3 +78,12 @@ sum_list_up([], 0).
 sum_list_up([H|T], Summ) :- 
    sum_list_up(T, SummTail),
    Summ is H + SummTail.
+
+
+remove_elements_with_digit_sum(ListIn, DigitSumTarget, ListOut) :-
+   exclude(has_digit_sum(DigitSumTarget), ListIn, ListOut).
+
+has_digit_sum(TargetSum, Number) :-
+   sum_digits_up(Number, Sum),
+   Sum =:= TargetSum.
+
