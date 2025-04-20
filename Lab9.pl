@@ -173,3 +173,20 @@ main12 :-
     min_max_positions(List, MinPos, MaxPos),
     reverse_between(List, MinPos, MaxPos, Result),
     print_list(Result).
+
+
+
+
+two_max(List, First, Second) :-
+    sort(List, Sorted),        
+    reverse(Sorted, [First, Second|_]).
+
+main24 :-
+    read_list(List),
+    (length(List, L), L >= 2 ->
+        two_max(List, First, Second),
+        write('Первый наибольший: '), write(First), nl,
+        write('Второй наибольший: '), write(Second), nl
+    ;
+        write('Список слишком короткий'), nl
+    ).
