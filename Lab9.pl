@@ -112,4 +112,14 @@ min_digit_up(N, CurrentMin, Min) :-
     NextN is N // 10,
     min_digit_up(NextN, NewMin, Min).
 
+count_less_than_3(N, Count) :-
+    count_less_than_3_down(N, Count).
+
+count_less_than_3_down(0, 0).
+count_less_than_3_down(N, Count) :-
+    N > 0,
+    Digit is N mod 10,
+    NextN is N // 10,
+    count_less_than_3_down(NextN, RestCount),
+    (Digit < 3 -> Count is RestCount + 1; Count is RestCount).
 
