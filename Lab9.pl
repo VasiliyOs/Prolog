@@ -100,3 +100,16 @@ min_digit_down(N, Min) :-
     min_digit_down(NextN, RestMin),
     Min is min(Digit, RestMin).
 
+
+min_digit(N, Min) :-
+    min_digit_up(N, 9, Min).
+
+min_digit_up(0, CurrentMin, CurrentMin).
+min_digit_up(N, CurrentMin, Min) :-
+    N > 0,
+    Digit is N mod 10,
+    NewMin is min(Digit, CurrentMin),
+    NextN is N // 10,
+    min_digit_up(NextN, NewMin, Min).
+
+
