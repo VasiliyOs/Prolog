@@ -35,7 +35,16 @@ sum_digits_down(N, Sum) :-
     sum_digits(N1, Sum1),
     Sum is Sum1 + Digit.
 
+read_list(List) :-
+    write('Введите список чисел: '),
+    read(List).
 
+
+
+print_list([]).
+print_list([H|T]) :-
+    write(H), nl,
+    print_list(T).
 
 
 sum_digits_up(N, Sum) :- 
