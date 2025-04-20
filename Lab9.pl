@@ -48,3 +48,8 @@ sum_digits_up(N, Sum) :-
     N1 is N // 10,
     sum_digits_up(N1, Sum1),
     Sum is Sum1 + Digit.
+
+is_square_free(0).
+is_square_free(Num) :-
+    Num > 0,
+    \+ (between(2, sqrt(Num), I), Square is I * I, Num mod Square =:= 0).
