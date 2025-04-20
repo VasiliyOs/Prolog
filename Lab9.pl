@@ -87,3 +87,16 @@ has_digit_sum(TargetSum, Number) :-
    sum_digits_up(Number, Sum),
    Sum =:= TargetSum.
 
+min_digit(N, Min) :-
+    min_digit_down(N, Min).
+
+min_digit_down(N, Min) :-
+    N < 10,
+    Min is N.
+min_digit_down(N, Min) :-
+    N >= 10,
+    Digit is N mod 10,
+    NextN is N // 10,
+    min_digit_down(NextN, RestMin),
+    Min is min(Digit, RestMin).
+
