@@ -62,3 +62,19 @@ is_square_free(0).
 is_square_free(Num) :-
     Num > 0,
     \+ (between(2, sqrt(Num), I), Square is I * I, Num mod Square =:= 0).
+
+
+sum_list_down([], 0).
+sum_list_down([H|T], Summ) :- 
+    sum_list_down(T, SummTail),
+    Summ is H + SummTail.
+
+
+
+sum_list_up(List, Summ) :- 
+   sum_list_up_helper(List, Summ).
+
+sum_list_up([], 0).
+sum_list_up([H|T], Summ) :- 
+   sum_list_up(T, SummTail),
+   Summ is H + SummTail.
