@@ -212,3 +212,90 @@ main36 :-
     ;
         write('Нет нечетных элементов'), nl
     ).
+
+
+
+
+is_prime(2).
+is_prime(3).
+is_prime(P) :-
+    integer(P),
+    P > 3,
+    P mod 2 =\= 0,
+    \+ has_factor(P, 3).
+
+has_factor(N, K) :-
+    K < N, 
+    (N mod K =:= 0 ; K2 is K + 2, has_factor(N, K2)).
+
+gcd(0, B, B).
+gcd(A, B, G) :-
+    A > 0,
+    R is B mod A,
+    gcd(R, A, G).
+
+are_coprime(A, B) :-
+    gcd(A, B, 1).
+
+number_digits(Number, Digits) :-
+    number_chars(Number, Chars),
+    maplist(char_number, Chars, Digits).
+
+char_number(Char, Number) :-
+    char_code(Char, Code),
+    Number is Code - 48.
+
+sum_list([], 0).
+sum_list([H|T], Sum) :-
+    sum_list(T, SumT),
+    Sum is H + SumT.
+
+read_input(Number) :-
+    write('Введите натуральное число: '),
+    read(Number).
+
+
+
+
+
+
+sum_nonprime_divisors(Number, Sum) :-
+    findall(D, (
+        between(2, Number, D),
+        Number mod D =:= 0,
+        \+ is_prime(D)
+    ), Divisors),
+    sum_list(Divisors, Sum).
+
+print_sum_nonprime_divisors(Sum) :-
+    format('1. Сумма непростых делителей: ~w~n', [Sum]).
+
+
+
+
+
+sum_prime_digits(Number, Sum) :-
+    number_digits(Number, Digits),
+    include(is_prime, Digits, PrimeDigits),
+    sum_list(PrimeDigits, Sum).
+
+count_special_numbers(Number, Count) :-
+    sum_prime_digits(Number, SumPD),
+    Upper is Number - 1,
+    findall(X, (
+        between(2, Upper, X),
+        Number mod X =\= 0,
+        gcd(Number, X) =\= 1,
+        are_coprime(X, SumPD)
+    ), Numbers),
+    length(Numbers, Count).
+
+print_special_numbers_count(Count) :-
+    format('2. Количество чисел по условию: ~w~n', [Count]).
+
+main5 :-
+    read_input(Number),
+    sum_nonprime_divisors(Number, Sum1),
+    print_sum_nonprime_divisors(Sum1),
+    count_special_numbers(Number, Count2),
+    print_special_numbers_count(Count2).
