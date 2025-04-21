@@ -333,3 +333,21 @@ main48 :-
     read_list(List),
     most_frequent_positions(List, Positions),
     print_list(Positions).
+
+
+
+divisible_by_index(List, Index, Elem) :-
+    nth1(Index, List, Elem),
+    0 is Elem mod Index.
+
+filter_unique_divisible(List, Filtered) :-
+    findall(Elem, 
+            (nth1(Index, List, Elem), 
+             divisible_by_index(List, Index, Elem), 
+             count(Elem, List, 1)), 
+            Filtered).
+
+main60 :-
+    read_list(List),
+    filter_unique_divisible(List, Filtered),
+    print_list(Filtered).
