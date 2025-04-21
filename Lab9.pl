@@ -299,3 +299,37 @@ main5 :-
     print_sum_nonprime_divisors(Sum1),
     count_special_numbers(Number, Count2),
     print_special_numbers_count(Count2).
+
+
+
+count(_, [], 0).
+count(X, [X|T], N) :- 
+    count(X, T, N1), 
+    N is N1 + 1.
+count(X, [Y|T], N) :- 
+    X \= Y, 
+    count(X, T, N).
+
+max_frequency(List, MaxFreq) :-
+    setof(X, member(X, List), UniqueElems),
+    findall(Freq, (member(Elem, UniqueElems), count(Elem, List, Freq)), Freqs),
+    max_list(Freqs, MaxFreq).
+
+elements_with_frequency(List, Freq, Elems) :-
+    setof(Elem, (member(Elem, List), count(Elem, List, Freq)), Elems).
+
+positions([], _, []).
+positions([H|T], Elem, [Pos|Rest]) :-
+    nth1(Pos, [H|T], Elem),
+    positions(T, Elem, Rest).
+
+most_frequent_positions(List, Positions) :-
+    max_frequency(List, MaxFreq),
+    elements_with_frequency(List, MaxFreq, Elems),
+    positions(List, Elems, Positions).
+
+
+main48 :-
+    read_list(List),
+    most_frequent_positions(List, Positions),
+    print_list(Positions).
